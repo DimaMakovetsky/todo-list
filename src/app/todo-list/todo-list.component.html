@@ -6,10 +6,10 @@
           <input matInput [(ngModel)]="newTask" name="newTask" >
         </mat-form-field>
     </form>
-    <button mat-raised-button color="primary" (click)="addTask()">Add task</button>
-    <!-- <input type="text" [value]="value"> -->
-    <!-- <button (click)="click()">ALARM!!!!</button> -->
+    <button mat-raised-button color="primary" (click)="addTask()" *ngIf="!editing">Add task</button>
+    <button mat-raised-button color="primary" (click)="saveTask()" *ngIf="editing">Save</button>
+    <button mat-raised-button color="primary" (click)="cancel()" *ngIf="editing">Cancel</button>
     <ng-container *ngFor="let task of taskList">    
-        <app-todo-task [task]="task" (remove)="removeTask($event)"></app-todo-task>
+        <app-todo-task [task]="task" (remove)="removeTask($event)" (edit)="editTask($event)"></app-todo-task>
     </ng-container>
 </div>
