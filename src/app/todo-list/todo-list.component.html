@@ -1,0 +1,15 @@
+<div class="todo-container">
+    <h1>To do list</h1>
+    <form>
+        <mat-form-field>
+          <mat-label>Your Task:</mat-label>
+          <input matInput [(ngModel)]="newTask" name="newTask" >
+        </mat-form-field>
+    </form>
+    <button mat-raised-button color="primary" (click)="addTask()">Add task</button>
+    <!-- <input type="text" [value]="value"> -->
+    <!-- <button (click)="click()">ALARM!!!!</button> -->
+    <ng-container *ngFor="let task of taskList">    
+        <app-todo-task [task]="task" (remove)="removeTask($event)"></app-todo-task>
+    </ng-container>
+</div>
