@@ -23,8 +23,4 @@ export class TodoTaskComponent {
   {
     this.task.completed=checked;
   }
-  saveTask(taskId:number):void
-  {
-
-  }
 }

@@ -1,11 +1,12 @@
 <div class="todo-container">
     <h1>To do list</h1>
-    <form>
+    <app-todo-progress [currentNumber]="taskList.length"></app-todo-progress>
+    <!-- <form>
         <mat-form-field>
           <mat-label>Your Task:</mat-label>
           <input matInput [(ngModel)]="newTask" name="newTask" >
         </mat-form-field>
-    </form>
+    </form> -->
     <button mat-raised-button color="primary" (click)="addTask()" *ngIf="!editing">Add task</button>
     <button mat-raised-button color="primary" (click)="saveTask()" *ngIf="editing">Save</button>
     <button mat-raised-button color="primary" (click)="cancel()" *ngIf="editing">Cancel</button>
