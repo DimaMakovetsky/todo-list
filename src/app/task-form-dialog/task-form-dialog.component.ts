@@ -10,7 +10,7 @@ import { Task } from '../types/task.type';
 export class TaskFormDialogComponent implements OnInit {
   public taskForm=this.fb.group(
     {
-      title:new FormControl<string>(null,[Validators.required]),
+      title:new FormControl<string>(null,[Validators.required, this.titleValidator]),
       description:new FormControl<string>(null, Validators.maxLength(50)),
       assignee:new FormControl<string>(null, [Validators.required]),
       isUrgent:new FormControl<boolean>(null)
@@ -51,6 +51,20 @@ export class TaskFormDialogComponent implements OnInit {
         description:this.data.task.description||null
       }
       )
+      console.log(this.taskForm);
+    }
+  }
+  titleValidator(control:FormControl)
+  {
+    const exp:RegExp=/^[A-Z]\w+/gm;
+    
+    if(control.value!=null&&!exp.test(control.value))
+    {
+      return{capitaliseError:true}
+    }
+    else
+    {
+      return null
     }
   }
 }
