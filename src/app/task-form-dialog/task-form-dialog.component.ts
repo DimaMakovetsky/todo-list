@@ -51,7 +51,6 @@ export class TaskFormDialogComponent implements OnInit {
         description:this.data.task.description||null
       }
       )
-      console.log(this.taskForm);
     }
   }
   titleValidator(control:FormControl)
