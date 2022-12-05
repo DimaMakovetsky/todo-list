@@ -1,3 +1,4 @@
+import { SpaceRemoverDirective } from './directives/spaceRemover.directive';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
@@ -16,13 +17,16 @@ import {MatDialogModule} from '@angular/material/dialog'
 import {MatOptionModule } from '@angular/material/core';
 import {MatSelectModule } from '@angular/material/select';
 import { TodoProgressComponent } from './todo-progress/todo-progress.component';
+import { TooltipDirective } from './directives/tooltip.directive';
 @NgModule({
   declarations: [
     AppComponent,
     TodoListComponent,
     TodoTaskComponent,
     TaskFormDialogComponent,
-    TodoProgressComponent
+    TodoProgressComponent,
+    TooltipDirective,
+    SpaceRemoverDirective
   ],
   imports: [
     BrowserModule,

@@ -5,7 +5,7 @@
     
     </mat-checkbox>
     <div class="task-wrapper">
-        <div [ngClass]="{'completed':task.completed}">{{task.title}}</div>
+        <div [ngClass]="{'completed':task.completed}" [tooltip]="task.title">{{task.title}}</div>
         <button mat-raised-button color="accent" (click)="editTask()">Edit</button>
         <button mat-raised-button color="warn" (click)="removeTask()">Remove</button>
         

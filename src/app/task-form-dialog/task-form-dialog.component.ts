@@ -56,14 +56,14 @@ export class TaskFormDialogComponent implements OnInit {
   titleValidator(control:FormControl)
   {
     const exp:RegExp=/^[A-Z]\w+/gm;
-    
-    if(control.value!=null&&!exp.test(control.value))
-    {
-      return{capitaliseError:true}
-    }
-    else
-    {
-      return null
-    }
+    return (control.value!==null&&!exp.test(control.value))?{capitaliseError:true}:null;
+    // if(control.value!==null&&!exp.test(control.value))
+    // {
+    //   return{capitaliseError:true}
+    // }
+    // else
+    // {
+    //   return null
+    // }
   }
 }
