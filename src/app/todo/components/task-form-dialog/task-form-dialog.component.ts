@@ -1,7 +1,7 @@
 import { Component, Inject, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { Task } from '../types/task.type';
+import { Task } from '../../types/task.type';
 @Component({
   selector: 'app-task-form-dialog',
   templateUrl: './task-form-dialog.component.html',
@@ -10,7 +10,7 @@ import { Task } from '../types/task.type';
 export class TaskFormDialogComponent implements OnInit {
   public taskForm=this.fb.group(
     {
-      title:new FormControl<string>(null,[Validators.required]),
+      title:new FormControl<string>(null,[Validators.required, this.titleValidator]),
       description:new FormControl<string>(null, Validators.maxLength(50)),
       assignee:new FormControl<string>(null, [Validators.required]),
       isUrgent:new FormControl<boolean>(null)
@@ -52,5 +52,18 @@ export class TaskFormDialogComponent implements OnInit {
       }
       )
     }
+  }
+  titleValidator(control:FormControl)
+  {
+    const exp:RegExp=/^[A-Z]\w+/gm;
+    return (control.value!==null&&!exp.test(control.value))?{capitaliseError:true}:null;
+    // if(control.value!==null&&!exp.test(control.value))
+    // {
+    //   return{capitaliseError:true}
+    // }
+    // else
+    // {
+    //   return null
+    // }
   }
 }

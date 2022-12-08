@@ -1,14 +1,15 @@
-import { Component, HostListener } from '@angular/core';
+import { TaskService } from '../../../services/task.service';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { TaskFormDialogComponent } from '../task-form-dialog/task-form-dialog.component';
-import { Task } from '../types/task.type';
+import { Task } from '../../types/task.type';
 @Component({
   selector: 'app-todo-list',
   templateUrl: './todo-list.component.html',
   styleUrls: ['./todo-list.component.scss']
 })
-export class TodoListComponent 
+export class TodoListComponent implements OnInit
 {
   public taskList: Task[]=[
   {
@@ -23,13 +24,15 @@ export class TodoListComponent
   ];
   public newTask: string;
   public editing:boolean=false;
+  public date:Date;
   private toEdit=0;
   private lastId:number=0;
   private users:string[]=["John", "Alex","Bob"];
 
   constructor (
     private _snackBar: MatSnackBar,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    private TaskService:TaskService
     ) {
     
   }
@@ -40,7 +43,10 @@ export class TodoListComponent
     this._snackBar.open("Created","",{duration: 3*1000,});
   }
 
-  
+  ngOnInit(): void {
+    this.taskList=this.TaskService.getTasks();
+  }
+
   addTask(): void
   {
   //   if(this.newTask)

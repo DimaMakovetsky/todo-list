@@ -1,5 +1,6 @@
 <div class="todo-container">
     <h1>To do list</h1>
+    {{date|date:"EEE, MMMM d, y"}}<br>
     <app-todo-progress [currentNumber]="taskList.length"></app-todo-progress>
     <!-- <form>
         <mat-form-field>
