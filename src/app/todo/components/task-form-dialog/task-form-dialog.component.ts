@@ -1,7 +1,7 @@
 import { Component, Inject, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { Task } from '../types/task.type';
+import { Task } from '../../types/task.type';
 @Component({
   selector: 'app-task-form-dialog',
   templateUrl: './task-form-dialog.component.html',
