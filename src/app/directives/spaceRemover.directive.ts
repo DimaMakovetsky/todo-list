@@ -15,7 +15,8 @@ export class SpaceRemoverDirective
     @HostListener('blur')
     onBlur():void
     {
-        this.control.control.setValue(this.control.control.value.trim());
+        if(this.control.control.value)
+            this.control.control.setValue(this.control.control.value.trim());
     }
     
     

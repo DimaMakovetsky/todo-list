@@ -8,10 +8,6 @@ import { MatDialogModule } from "@angular/material/dialog";
 import { MatInputModule } from "@angular/material/input";
 import { MatSelectModule } from "@angular/material/select";
 import { MatSnackBarModule } from "@angular/material/snack-bar";
-import { BrowserModule } from "@angular/platform-browser";
-import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
-import { AppRoutingModule } from "../app-routing.module";
-import { AppComponent } from "../app.component";
 import { SpaceRemoverDirective } from "../directives/spaceRemover.directive";
 import { TooltipDirective } from "../directives/tooltip.directive";
 import { TaskFormDialogComponent } from "./components/task-form-dialog/task-form-dialog.component";
@@ -19,6 +15,11 @@ import { TodoListComponent } from "./components/todo-list/todo-list.component";
 import { TodoProgressComponent } from "./components/todo-progress/todo-progress.component";
 import { TodoTaskComponent } from "./components/todo-task/todo-task.component";
 import { UrgentPipe } from "./pipes/urgent.pipe";
+import { TodoTaskDetailsComponent } from './components/todo-task-details/todo-task-details.component';
+import { TodoRoutingModule } from "./todo-routing.module";
+import {MatExpansionModule} from '@angular/material/expansion';
+import { MatFormFieldModule } from "@angular/material/form-field";
+
 
 @NgModule
 ({
@@ -30,22 +31,25 @@ import { UrgentPipe } from "./pipes/urgent.pipe";
     TodoProgressComponent,
     TooltipDirective,
     SpaceRemoverDirective,
-    UrgentPipe
+    // UrgentPipe,
+    TodoTaskDetailsComponent,
+    
   ],
   imports: [
-    BrowserModule,
-    AppRoutingModule,
+    // AppRoutingModule,
+    CommonModule,
+    TodoRoutingModule,
     FormsModule,
-    BrowserAnimationsModule,
+    ReactiveFormsModule,
     MatInputModule,
     MatButtonModule,
     MatCheckboxModule,
     MatSnackBarModule,
-    ReactiveFormsModule,
     MatDialogModule,
-    MatOptionModule,
     MatSelectModule,
-    CommonModule
+    MatFormFieldModule,
+    MatOptionModule,
+    MatExpansionModule
   ],
   providers: [],
   bootstrap: []

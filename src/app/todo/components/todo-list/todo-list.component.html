@@ -8,10 +8,24 @@
           <input matInput [(ngModel)]="newTask" name="newTask" >
         </mat-form-field>
     </form> -->
+    <ng-container *ngFor="let task of taskList">    
+      <app-todo-task [task]="task" (remove)="removeTask($event)" (edit)="editTask($event)"></app-todo-task>
+    </ng-container>
     <button mat-raised-button color="primary" (click)="addTask()" *ngIf="!editing">Add task</button>
     <button mat-raised-button color="primary" (click)="saveTask()" *ngIf="editing">Save</button>
     <button mat-raised-button color="primary" (click)="cancel()" *ngIf="editing">Cancel</button>
-    <ng-container *ngFor="let task of taskList">    
+    <!-- <ng-container *ngFor="let task of taskList">    
         <app-todo-task [task]="task" (remove)="removeTask($event)" (edit)="editTask($event)"></app-todo-task>
-    </ng-container>
+        <mat-expansion-panel hideToggle>
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                {{task.title}}
+              </mat-panel-title>
+              <mat-panel-description>
+                This is a summary of the content
+              </mat-panel-description>
+            </mat-expansion-panel-header>
+            <p>This is the primary content of the panel.</p>
+          </mat-expansion-panel>
+    </ng-container> -->
 </div>
