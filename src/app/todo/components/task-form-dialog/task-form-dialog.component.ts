@@ -57,13 +57,5 @@ export class TaskFormDialogComponent implements OnInit {
   {
     const exp:RegExp=/^[A-Z]\w+/gm;
     return (control.value!==null&&!exp.test(control.value))?{capitaliseError:true}:null;
-    // if(control.value!==null&&!exp.test(control.value))
-    // {
-    //   return{capitaliseError:true}
-    // }
-    // else
-    // {
-    //   return null
-    // }
   }
 }

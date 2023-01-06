@@ -1,3 +1,6 @@
+import { ActivatedRoute } from '@angular/router';
+import { Router } from '@angular/router';
+import { tasks } from './../../../services/mockData';
 import { TaskService } from '../../../services/task.service';
 import { Component, HostListener, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
@@ -32,7 +35,9 @@ export class TodoListComponent implements OnInit
   constructor (
     private _snackBar: MatSnackBar,
     public dialog: MatDialog,
-    private TaskService:TaskService
+    private TaskService:TaskService,
+    private router:Router,
+    private activatedRoute:ActivatedRoute
     ) {
     
   }
@@ -44,36 +49,39 @@ export class TodoListComponent implements OnInit
   }
 
   ngOnInit(): void {
-    this.taskList=this.TaskService.getTasks();
+    this.date=new Date();
+    this.TaskService.getTasks().subscribe(tasks=>
+      this.taskList=tasks);
   }
 
   addTask(): void
   {
+    this.router.navigate(['new'], { relativeTo: this.activatedRoute.parent });
   //   if(this.newTask)
   //   {
   //     this.taskList.push({title: this.newTask,id:++this.lastId, completed:false});
   //     this.newTask="";
   //  }
-    const dialogRef=this.dialog.open(TaskFormDialogComponent,
-      {
-        width:"600px",
-        data:{users:this.users }
-      })
-    dialogRef.afterClosed().subscribe(result=>
-      {
-        if(result)
-        {
+    // const dialogRef=this.dialog.open(TaskFormDialogComponent,
+    //   {
+    //     width:"600px",
+    //     data:{users:this.users }
+    //   })
+    // dialogRef.afterClosed().subscribe(result=>
+    //   {
+    //     if(result)
+    //     {
 
-          // console.log(result);
-          // if(result.isUrgent===null)
-          // {
-          //   result.isUrgent=false;
-          // }
-          // const obj:Task={id:++this.lastId, title:result.title,isUrgent:result.isUrgent,asignee:result.asignee}
-          const obj:Task={id:++this.lastId, ...result}
-          this.taskList.push(obj);
-        }
-      });
+    //       // console.log(result);
+    //       // if(result.isUrgent===null)
+    //       // {
+    //       //   result.isUrgent=false;
+    //       // }
+    //       // const obj:Task={id:++this.lastId, title:result.title,isUrgent:result.isUrgent,asignee:result.asignee}
+    //       const obj:Task={id:++this.lastId, ...result}
+    //       this.taskList.push(obj);
+    //     }
+    //   });
     }
   removeTask(taskId:number):void
   {
@@ -83,21 +91,23 @@ export class TodoListComponent implements OnInit
 
   editTask(taskId:number):void
   {
-    const task=this.taskList.find(task=>task.id===taskId);
-    const dialogRef=this.dialog.open(TaskFormDialogComponent,
-      {
-        width:"600px",
-        data:{task ,users:this.users }
-      })
-    dialogRef.afterClosed().subscribe(result=>
-      {
-        if(result)
-        {
-          const taskIndex=this.taskList.findIndex(task=>task.id===taskId);
-          this.taskList.splice(taskIndex,1);
-          this.taskList.push({...task,...result});
-        }
-      });
+    this.router.navigate([taskId], { relativeTo: this.activatedRoute.parent });
+
+    // const task=this.taskList.find(task=>task.id===taskId);
+    // const dialogRef=this.dialog.open(TaskFormDialogComponent,
+    //   {
+    //     width:"600px",
+    //     data:{task ,users:this.users }
+    //   })
+    // dialogRef.afterClosed().subscribe(result=>
+    //   {
+    //     if(result)
+    //     {
+    //       const taskIndex=this.taskList.findIndex(task=>task.id===taskId);
+    //       this.taskList.splice(taskIndex,1);
+    //       this.taskList.push({...task,...result});
+    //     }
+    //   });
   }
   saveTask():void
   {
